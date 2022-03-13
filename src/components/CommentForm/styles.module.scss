@@ -1,0 +1,15 @@
+// Required
+@import "../../globals.scss";
+
+
+.post-card {
+  height: 100%;
+
+  &-title {
+    text-decoration: inherit;
+  }
+
+  &:hover {
+    border: 1px solid blue;
+  }
+}

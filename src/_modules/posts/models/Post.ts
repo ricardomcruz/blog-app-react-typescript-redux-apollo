@@ -1,4 +1,6 @@
-interface Post {
+import { RawComment } from '../../comments/models/Comment';
+
+export interface Post {
     id: number;
     title: string;
     author: string;
@@ -8,4 +10,6 @@ interface Post {
     content: string
 }
 
-export default Post
+export interface PostWithComments extends Post {
+  comments: RawComment[];
+}

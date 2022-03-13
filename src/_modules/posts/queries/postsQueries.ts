@@ -21,7 +21,14 @@ export const queries = {
       }
     }
   `,
+  FETCH_POST_BY_ID: () => gql`
+    ${POST}
+    query fetchPostById($id: String!) {
+      posts(id: $id) @rest(type: "Post", path: "/posts/{args.id}") {
+        ...PostCore
+      }
+    }
+  `,
 };
-
 
 export default queries;

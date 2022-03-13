@@ -1,15 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Comment from '../models/Comment';
+import initialCommentsState from './commentsStates';
 
-export interface CommentsState {
-  comments: Comment[];
-}
+const initialState = initialCommentsState;
 
-const initialState: CommentsState = {
-  comments: [],
-};
-
-export const commentsSlice: any = createSlice({
+export const commentsSlice = createSlice({
   name: 'comments',
   initialState,
   reducers: {},
@@ -18,9 +12,15 @@ export const commentsSlice: any = createSlice({
       .addCase(
         'comments/fetchComments/fulfilled',
         (state, { meta, payload }: any) => {
-          state.comments = payload.data;
+          state.comments = payload.data.comments;
         }
       )
+      .addCase(
+        'comments/fetchCommentsFromPost/fulfilled',
+        (state, { meta, payload }: any) => {
+          state.comments.push(payload);
+        }
+      );
   },
 });
 

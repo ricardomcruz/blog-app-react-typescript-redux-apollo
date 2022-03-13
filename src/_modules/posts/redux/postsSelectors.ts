@@ -1,5 +1,6 @@
 import type { RootState } from '../../../_shared/infra/redux/store';
+import { Post } from '../models/Post';
 
-export const selectPosts = (state: RootState): any =>
-  state?.modules.posts;
-
+export const selectPosts = ({ modules }: RootState): Post[] =>
+  modules?.posts?.posts;
+  

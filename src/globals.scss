@@ -1,0 +1,25 @@
+// Required
+@import "../node_modules/bootstrap/scss/functions";
+
+// Required
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+// variables
+$footerHeight: 50px;
+
+// overrides
+body {
+  background: $light;
+}
+
+a {
+  text-decoration: none;
+  color: var(--dark);
+}
+
+p {
+  margin: 0;
+}
+

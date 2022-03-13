@@ -1,5 +1,6 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { Action, combineReducers, configureStore, ThunkDispatch } from '@reduxjs/toolkit';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { useDispatch } from 'react-redux';
 import thunk from 'redux-thunk';
 import comments from '../../../_modules/comments/redux/commentsSlice';
 import posts from '../../../_modules/posts/redux/postsSlice';
@@ -26,7 +27,8 @@ export const store = configureStore({
     }).concat(middleware),
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
+
+export type ThunkAppDispatch = ThunkDispatch<RootState, void, Action>;
+
+export const useAppThunkDispatch = () => useDispatch<ThunkAppDispatch>();

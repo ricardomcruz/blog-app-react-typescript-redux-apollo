@@ -1,15 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Post from '../models/Post';
+import initialPostsState from './postsStates';
 
-export interface PostsState {
-  posts: Post[];
-}
+const initialState = initialPostsState;
 
-const initialState: PostsState = {
-  posts: [],
-};
-
-export const postsSlice: any = createSlice({
+export const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {},
@@ -18,9 +12,18 @@ export const postsSlice: any = createSlice({
       .addCase(
         'posts/fetchPosts/fulfilled',
         (state, { meta, payload }: any) => {
-          state.posts = payload.data;
+          state.posts = payload.data.posts;
         }
       )
+      .addCase(
+        'posts/fetchPostById/fulfilled',
+        (state, { meta, payload }: any) => {
+          const postStored = !!state.posts.find(post => post.id === payload.id);
+          if(!postStored) {
+            state.posts.push(payload);
+          }
+        }
+      );
   },
 });
 
