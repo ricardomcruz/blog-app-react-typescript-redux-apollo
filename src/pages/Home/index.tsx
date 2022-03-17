@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import PostCard from '../../components/PostCard';
+import { selectAppDarkMode } from '../../_modules/app/redux/appSelectors';
 import { fetchComments } from '../../_modules/comments/redux/commentsAsyncThunks';
 import { selectComments } from '../../_modules/comments/redux/commentsSelectors';
 import { PostWithComments } from '../../_modules/posts/models/Post';
 import { fetchPosts } from '../../_modules/posts/redux/postsAsyncThunks';
 import { selectPosts } from '../../_modules/posts/redux/postsSelectors';
+import { useAppThunkDispatch } from '../../_shared/infra/redux/store';
 
 const Home = () => {
 
-  const dispatch = useDispatch();
+  const dispatch = useAppThunkDispatch();
   const posts = useSelector(selectPosts);
   const comments = useSelector(selectComments);
+  const darkMode = useSelector(selectAppDarkMode);
 
   const [postsByPublishDateWithComments, setPostsByPublishDateWithComments] = useState<PostWithComments[]>([]);
 
@@ -46,7 +48,7 @@ const Home = () => {
   }, [dispatch, posts, comments]);
 
   return (
-    <Container>
+    <>
       <h2 className='text-center mt-5 mb-4'>
         Articles
       </h2>
@@ -56,7 +58,7 @@ const Home = () => {
             {
               postsByPublishDateWithComments.map((post: any) =>
                 <Col key={post.id}>
-                  <PostCard post={post} />
+                  <PostCard post={post} darkMode={darkMode}/>
                 </Col>
               )
             }
@@ -64,7 +66,7 @@ const Home = () => {
           :
           <div>loading</div>
       }
-    </Container>
+    </>
   );
 }
 

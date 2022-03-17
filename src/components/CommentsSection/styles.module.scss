@@ -1,7 +1,9 @@
 // Required
-@import "../../globals.scss";
+@import '../../globals.scss';
 
-
-.comments-section {
-  height: 100%;
+.comments {
+  &-section {
+    height: 100%;
+    
+  }
 }

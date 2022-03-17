@@ -2,6 +2,7 @@ import { Action, combineReducers, configureStore, ThunkDispatch } from '@reduxjs
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { useDispatch } from 'react-redux';
 import thunk from 'redux-thunk';
+import app from '../../../_modules/app/redux/appSlice';
 import comments from '../../../_modules/comments/redux/commentsSlice';
 import posts from '../../../_modules/posts/redux/postsSlice';
 import history from './history';
@@ -9,6 +10,7 @@ import history from './history';
 const middleware = [routerMiddleware(history), thunk];
 
 const modulesReducer = combineReducers({
+  app,
   posts,
   comments
 });

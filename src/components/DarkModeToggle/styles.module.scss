@@ -1,0 +1,9 @@
+@import "../../globals.scss";
+
+.dark-mode-toggle {
+  display: flex;
+
+  &-text {
+    color: $light;
+  }
+}

@@ -8,6 +8,7 @@ const cx = classNamesBind.bind(styles);
 
 interface CommentCardProps {
   comment: RawComment
+  darkMode: boolean
 }
 
 const CommentCard = (
@@ -16,16 +17,21 @@ const CommentCard = (
       date,
       content,
       user
-    }
+    },
+    darkMode
   }: CommentCardProps
 ) => {
 
   return (
-      <Card className={cx("comment-card", "my-3")}>
-      <Card.Header className={cx("comment-card-header")}>
-        <b>{user}</b>
+    <Card className={cx("comment-card", "my-3", { "bg-dark": darkMode })}>
+      <Card.Header className={cx("comment-card-header", { 
+        "text-light": darkMode, 
+        "bg-secondary": darkMode
+        }
+        )}>
+        <small><b>{user}</b></small>
         <div>
-          <p>{date}</p>
+          <small>{date}</small>
         </div>
       </Card.Header>
         <Card.Body >

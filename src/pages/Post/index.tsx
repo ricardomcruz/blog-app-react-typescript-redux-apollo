@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Article from '../../components/Article';
+import { selectAppDarkMode } from '../../_modules/app/redux/appSelectors';
 import { fetchCommentsFromPost } from '../../_modules/comments/redux/commentsAsyncThunks';
 import { selectComments } from '../../_modules/comments/redux/commentsSelectors';
 import { PostWithComments } from '../../_modules/posts/models/Post';
@@ -14,6 +15,7 @@ const Post = () => {
   const dispatch = useAppThunkDispatch();
   const posts = useSelector(selectPosts);
   const comments = useSelector(selectComments);
+  const darkMode = useSelector(selectAppDarkMode);
 
   const [postWithComments, setPostWithComments] = useState<PostWithComments | null>(null);
 
@@ -68,7 +70,7 @@ const Post = () => {
   return (
     postWithComments && id ?
 
-            <Article post={postWithComments} />
+      <Article post={postWithComments} darkMode={darkMode} />
       :
       <div>
         nothing

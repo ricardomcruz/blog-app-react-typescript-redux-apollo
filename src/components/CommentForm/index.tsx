@@ -1,13 +1,11 @@
 import classNamesBind from 'classnames/bind';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { RawComment } from '../../_modules/comments/models/Comment';
 import styles from './styles.module.scss';
 
-
 const cx = classNamesBind.bind(styles);
-
 interface CommentFormProps {
   postId: number,
   onCommentSubmit: (data: RawComment) => void
@@ -32,21 +30,27 @@ const CommentForm = (
 
   const [value, setValue] = useState<RawComment>(emptyComment as RawComment);
   const [validated, setValidated] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const handleChange = (event: any, field: string) => {
     setValue({ ...value, [field]: event.target.value});
+    setValidated(false);
+    setSent(false);
   }
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     const form = event.currentTarget;
-    event.preventDefault();
+
+    
     if (form.checkValidity() === false) {
+      event.preventDefault();
       event.stopPropagation();
     }
     else {
-      setValidated(true);
+      setSent(true);
       onCommentSubmit(value)
     }
+    setValidated(true);
   };
 
   return (
@@ -73,13 +77,16 @@ const CommentForm = (
           Please provide your comment
         </Form.Control.Feedback>
       </Form.Group>
-      <Button type="submit">{
-        validated ?
-        'Sent'
-        :
-        'Submit form'
-      }
-      </Button>
+      <div className={cx('button-container')}>
+        <Button type="submit">{
+          sent ?
+            'Sent'
+            :
+            'Submit form'
+        }
+        </Button>
+      </div>
+      
     </Form>
   );
 }

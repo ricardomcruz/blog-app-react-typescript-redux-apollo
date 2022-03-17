@@ -9,17 +9,47 @@
 // variables
 $footerHeight: 50px;
 
-// overrides
+// style overrides
+
 body {
   background: $light;
 }
 
 a {
   text-decoration: none;
-  color: var(--dark);
+  color: $dark;
 }
 
 p {
   margin: 0;
+}
+
+/* NOTE A
+  Ideally it should be scoped to each UI component but this was a faster workaround for the challenge purpose
+*/
+:global(.dark-mode) {
+  background: var(--bs-gray-800);
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  label,
+  small,
+  p {
+   color: $light;
+  }
+
+  input,
+  textarea {
+    background: var(--bs-dark);
+    color: $light;
+
+    &:focus {
+      background: var(--bs-gray-800);
+      color: $light;
+    }
+  }
 }
 

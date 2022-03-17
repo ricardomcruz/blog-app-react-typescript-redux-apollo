@@ -1,4 +1,6 @@
 import classNamesBind from 'classnames/bind';
+import { useSelector } from 'react-redux';
+import { selectAppDarkMode } from '../../_modules/app/redux/appSelectors';
 import { RawComment } from '../../_modules/comments/models/Comment';
 import { createComment } from '../../_modules/comments/redux/commentsAsyncThunks';
 import { useAppThunkDispatch } from '../../_shared/infra/redux/store';
@@ -21,34 +23,43 @@ const CommentsSection = (
 ) => {
   const dispatch = useAppThunkDispatch();
 
+  const darkMode = useSelector(selectAppDarkMode);
+
   const handleSubmitComment = async (data: RawComment) => {
     const submitted = await dispatch(createComment({postId: Number(data.postId), comment: data})).unwrap();
     console.log(submitted)
   }
 
   return (
-    <div className={cx('comments-section', 'py-2')}> 
+    <div className={cx('comments-section')}>
+      <div >
+        <h5 className={cx('mb-3')}>
+          Leave your comment
+        </h5>
+        <CommentForm postId={postId} onCommentSubmit={handleSubmitComment} />
+      </div>
     {
       comments.length ?
-        <div>
+          <div className={cx('mt-4')} >
             <h5>
               Comments
             </h5>
-            {
-              comments?.map(comment =>
-                <CommentCard key={comment.id} comment={comment} />
-              )
-            }
+         
+              <div className={cx('comments-list')}>
+                {
+                  comments?.map(comment =>
+                    <CommentCard key={comment.id} comment={comment} darkMode={darkMode} />
+                  )
+                }
+              </div>
+          
+            
+            
         </div>
         : 
         null
     }
-      <div>
-        <h5 className={cx('mb-3')}>
-          Leave your comment
-        </h5>
-        <CommentForm postId={postId} onCommentSubmit={handleSubmitComment}/>
-      </div>
+      
     </div>
   );
 }
