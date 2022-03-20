@@ -7,4 +7,5 @@
 
 - More unit tests with interaction with the components, firing events, to check its behaviors
 - More clear split of business logic from presentation logic
-- Creation of error handling and presentation components 
+- Creation of error handling and presentation components
+- Better consideration of semantic markup, SEO and accessibility 
