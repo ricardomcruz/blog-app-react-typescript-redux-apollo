@@ -2,7 +2,7 @@
 
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
-import { postMock } from '../../mocks/mocks';
+import { postWithCommentsMock } from '../../mocks/mocks';
 import ArticleCard from './index';
 
 describe('ArticleCard', () => {
@@ -11,7 +11,7 @@ describe('ArticleCard', () => {
     const { asFragment }= render(
       <ArticleCard
         darkMode={false}
-        post={postMock}
+        post={postWithCommentsMock}
       />
     );
     expect(asFragment()).toMatchSnapshot();

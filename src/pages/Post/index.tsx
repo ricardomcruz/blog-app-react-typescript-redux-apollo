@@ -48,32 +48,13 @@ const Post = () => {
     }
   }, [comments]);
 
-/*   useEffect(() => {
-    if (id) {
-      const postId = parseInt(id);
-      let post;
-      
-      post = posts.find(post => id && post.id === postId);
-
-      if(!post) {
-        dispatch(fetchPostById(postId))
-      }
-
-      if (post) {
-        const postComments = comments.filter((comment: any) => Number(comment.postId) === post?.id);
-        setPostWithComments({ ...post, comments: postComments })
-      }
-    }
-
-  }, [dispatch, posts, comments, id]); */
-
   return (
     postWithComments && id ?
 
       <ArticleContainer post={postWithComments} darkMode={darkMode} />
       :
       <div>
-        nothing
+        Article not available
       </div>
   );
 }
