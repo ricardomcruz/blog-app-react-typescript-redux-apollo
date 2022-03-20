@@ -1,0 +1,13 @@
+@import '../../globals.scss';
+
+.navigation {
+  background: white;
+
+  &-button:hover {
+    background: var(--bs-gray-400);
+  }
+}
+
+.dark-mode {
+  background-color: var(--bs-gray-600);
+}

@@ -1,25 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import classNamesBind from 'classnames/bind';
+import { useEffect } from 'react';
+import Container from 'react-bootstrap/Container';
+import { useSelector } from 'react-redux';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Home from './pages/Home';
+import Post from './pages/Post';
+import styles from './styles.module.scss';
+import { selectAppDarkMode } from './_modules/app/redux/appSelectors';
 
-function App() {
+const cx = classNamesBind.bind(styles);
+
+const App = () => {
+
+  const darkMode = useSelector(selectAppDarkMode);
+
+  /* NOTE A
+    Add a global class in body that override default styles for dark-mode.
+    Ideally it should be scoped to each UI component but this was a faster workaround for the challenge purpose
+  */
+
+  useEffect(() => {
+    const darkModeClass = 'dark-mode';
+    if (darkMode) {
+      document.body.classList.add(darkModeClass);
+    } else {
+      document.body.classList.remove(darkModeClass);
+    }
+  }, [darkMode]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Container className={cx("container", "pb-5")}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/post/:id" element={<Post />} />
+          <Route
+            path="*"
+            element={<Navigate to="/" />}
+          />
+        </Routes>
+      </Container>
+      <Footer />
+    </>
   );
 }
 

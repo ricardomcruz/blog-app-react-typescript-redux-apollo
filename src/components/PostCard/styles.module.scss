@@ -1,0 +1,30 @@
+// Required
+@import "../../globals.scss";
+
+.post-card {
+  height: 100%;
+
+  &-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &-title {
+    text-decoration: inherit;
+  }
+
+  &:hover {
+    border: 1px solid blue;
+  }
+
+  &-publication {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-text-container {
+    display: flex;
+    flex-direction: column;
+  }
+}

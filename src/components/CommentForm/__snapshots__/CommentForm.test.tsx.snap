@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentForm should render the Comment Form 1`] = `
+<DocumentFragment>
+  <form
+    class=""
+    novalidate=""
+  >
+    <div
+      class="mb-3"
+    >
+      <label
+        class="form-label"
+        for="validationCustom01"
+      >
+        Name
+      </label>
+      <input
+        class="form-control"
+        id="validationCustom01"
+        required=""
+        type="text"
+      />
+      <div
+        class="invalid-feedback"
+      >
+        Please provide your name
+      </div>
+    </div>
+    <div
+      class="mb-3"
+    >
+      <label
+        class="form-label"
+        for="validationCustom02"
+      >
+        Comment
+      </label>
+      <textarea
+        class="form-control"
+        id="validationCustom02"
+        required=""
+        rows="3"
+      />
+      <div
+        class="invalid-feedback"
+      >
+        Please provide your comment
+      </div>
+    </div>
+    <div
+      class="button-container"
+    >
+      <button
+        class="btn btn-primary"
+        type="submit"
+      >
+        Submit form
+      </button>
+    </div>
+  </form>
+</DocumentFragment>
+`;
