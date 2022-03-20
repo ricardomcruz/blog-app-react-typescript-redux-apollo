@@ -27,18 +27,14 @@ const Home = () => {
     dispatch(fetchComments());
 
     const postsByPublishDate = [...posts].sort((a, b) => {
-
       const postAPublishDate = new Date(a.publish_date).getTime();
       const postBPublishDate = new Date(b.publish_date).getTime();
-
       return postBPublishDate - postAPublishDate
     });
 
     const sortedPostsWithComments = postsByPublishDate.map(post => {
       const postComments = comments.filter((comment: any) => {
-
         return Number(comment.postId) === post.id
-
       });
       return {
         ...post, comments: postComments

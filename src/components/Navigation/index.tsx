@@ -7,7 +7,6 @@ import styles from './styles.module.scss';
 
 const cx = classNamesBind.bind(styles);
 
-
 function Navigation() {
   const navigate = useNavigate();
   const { pathname } = useLocation();

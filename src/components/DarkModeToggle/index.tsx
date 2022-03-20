@@ -17,7 +17,6 @@ const Header = () => {
 
   const [darkMode, setDarkMode] = useState(initialDarkMode);
 
-
   const handleToggle = () => {
     setDarkMode(!darkMode)
   }

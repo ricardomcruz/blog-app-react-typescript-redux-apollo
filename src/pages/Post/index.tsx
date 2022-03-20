@@ -22,8 +22,6 @@ const Post = () => {
   let { id } = useParams();
   const postId = id && parseInt(id);
 
-  
-
   useEffect(() => {
     const fetchAndSetPost = async (postId: number) => {
       try {
@@ -50,7 +48,6 @@ const Post = () => {
 
   return (
     postWithComments && id ?
-
       <ArticleContainer post={postWithComments} darkMode={darkMode} />
       :
       <div>

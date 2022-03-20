@@ -7,7 +7,6 @@ import Navigation from '../Navigation';
 import styles from './styles.module.scss';
 
 const cx = classNamesBind.bind(styles);
-
 const Header = () => {
   return (
     <div className={cx('header', 'shadow-sm rounded')}>
