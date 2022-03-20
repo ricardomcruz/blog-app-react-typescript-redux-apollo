@@ -1,7 +1,7 @@
 import classNamesBind from 'classnames/bind';
 import { useSelector } from 'react-redux';
 import { selectAppDarkMode } from '../../_modules/app/redux/appSelectors';
-import { RawComment } from '../../_modules/comments/models/Comment';
+import { Comment, CommentDTO } from '../../_modules/comments/models/Comment';
 import { createComment } from '../../_modules/comments/redux/commentsAsyncThunks';
 import { useAppThunkDispatch } from '../../_shared/infra/redux/store';
 import CommentCard from '../CommentCard';
@@ -11,7 +11,7 @@ import styles from './styles.module.scss';
 const cx = classNamesBind.bind(styles);
 
 interface CommentsSectionProps {
-  comments: RawComment[],
+  comments: Comment[],
   postId: number
 }
 
@@ -25,7 +25,7 @@ const CommentsSection = (
 
   const darkMode = useSelector(selectAppDarkMode);
 
-  const handleSubmitComment = async (data: RawComment) => {
+  const handleSubmitComment = async (data: CommentDTO) => {
     const submitted = await dispatch(createComment({postId: Number(data.postId), comment: data})).unwrap();
     console.log(submitted)
   }

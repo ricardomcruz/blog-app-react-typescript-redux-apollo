@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import Article from '../../components/Article';
+import ArticleContainer from '../../components/ArticleContainer';
 import { selectAppDarkMode } from '../../_modules/app/redux/appSelectors';
 import { fetchCommentsFromPost } from '../../_modules/comments/redux/commentsAsyncThunks';
 import { selectComments } from '../../_modules/comments/redux/commentsSelectors';
@@ -70,7 +70,7 @@ const Post = () => {
   return (
     postWithComments && id ?
 
-      <Article post={postWithComments} darkMode={darkMode} />
+      <ArticleContainer post={postWithComments} darkMode={darkMode} />
       :
       <div>
         nothing

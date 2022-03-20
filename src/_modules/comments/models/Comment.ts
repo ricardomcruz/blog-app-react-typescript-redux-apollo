@@ -1,4 +1,4 @@
-export interface RawComment {
+export interface Comment {
     id: number;
     postId: number | string;  // json-server converts all POST payload to string values
     parent_id?: number;
@@ -7,7 +7,7 @@ export interface RawComment {
     content: string
 }
 
-export interface Comment {
+export interface CommentDTO {
   postId: number;
   user: string;
   date: string;

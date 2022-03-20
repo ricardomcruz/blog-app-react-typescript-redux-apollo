@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import app from '../../../_modules/app/redux/appSlice';
 import comments from '../../../_modules/comments/redux/commentsSlice';
 import posts from '../../../_modules/posts/redux/postsSlice';
-import history from './history';
+import history from '../router/history';
 
 const middleware = [routerMiddleware(history), thunk];
 

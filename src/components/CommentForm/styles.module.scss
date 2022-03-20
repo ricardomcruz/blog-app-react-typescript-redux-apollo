@@ -1,7 +1,6 @@
 // Required
 @import "../../globals.scss";
 
-
 .post-card {
   height: 100%;
 
@@ -10,7 +9,7 @@
   }
 
   &:hover {
-    border: 1px solid blue;
+    border: 1px solid var(--bs-blue);
   }
 }
 

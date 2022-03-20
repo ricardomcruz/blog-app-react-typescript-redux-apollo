@@ -8,7 +8,10 @@ export const appSlice = createSlice({
   initialState,
   reducers: {
     toggleDarkMode: ( state, { payload }: PayloadAction<boolean>) => {
+      
+      // save the darkMode in localStorage in order to keep it when we refresh the page
       localStorage.setItem('darkMode', payload ? '1' : '');
+      
       state.darkMode = payload;
     },
   },

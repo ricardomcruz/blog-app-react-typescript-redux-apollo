@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleCard should render the Article Card 1`] = `
+<DocumentFragment>
+  <div
+    class="p-4 mb-4 card"
+  >
+    <h2>
+      title
+    </h2>
+    <h5
+      class="mt-2 text-secondary"
+    >
+      author
+    </h5>
+    <div>
+      <div>
+        content
+      </div>
+      <div
+        class="mt-4"
+      >
+        <small>
+          publish_date
+        </small>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

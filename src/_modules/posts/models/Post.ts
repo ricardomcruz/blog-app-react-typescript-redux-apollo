@@ -1,4 +1,4 @@
-import { RawComment } from '../../comments/models/Comment';
+import { Comment } from '../../comments/models/Comment';
 
 export interface Post {
     id: number;
@@ -11,5 +11,5 @@ export interface Post {
 }
 
 export interface PostWithComments extends Post {
-  comments: RawComment[];
+  comments: Comment[];
 }

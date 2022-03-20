@@ -2,13 +2,13 @@ import classNamesBind from 'classnames/bind';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { RawComment } from '../../_modules/comments/models/Comment';
+import { CommentDTO } from '../../_modules/comments/models/Comment';
 import styles from './styles.module.scss';
 
 const cx = classNamesBind.bind(styles);
 interface CommentFormProps {
   postId: number,
-  onCommentSubmit: (data: RawComment) => void
+  onCommentSubmit: (data: CommentDTO) => void
 }
 
 const CommentForm = (
@@ -17,7 +17,6 @@ const CommentForm = (
     onCommentSubmit
   }: CommentFormProps
 ) => {
-
 
   const date = new Date().toISOString().slice(0, 10);;
 
@@ -28,12 +27,12 @@ const CommentForm = (
     content: ''
   }
 
-  const [value, setValue] = useState<RawComment>(emptyComment as RawComment);
+  const [value, setValue] = useState<CommentDTO>(emptyComment);
   const [validated, setValidated] = useState(false);
   const [sent, setSent] = useState(false);
 
   const handleChange = (event: any, field: string) => {
-    setValue({ ...value, [field]: event.target.value});
+    setValue({ ...value, [field]: event.target.value });
     setValidated(false);
     setSent(false);
   }
@@ -41,7 +40,6 @@ const CommentForm = (
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     const form = event.currentTarget;
 
-    
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
@@ -86,7 +84,6 @@ const CommentForm = (
         }
         </Button>
       </div>
-      
     </Form>
   );
 }

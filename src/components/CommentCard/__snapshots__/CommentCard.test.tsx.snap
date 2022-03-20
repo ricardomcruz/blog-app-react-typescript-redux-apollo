@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentCard should render the Article Card 1`] = `
+<DocumentFragment>
+  <div
+    class="comment-card my-3 bg-dark card"
+  >
+    <div
+      class="comment-card-header text-light bg-secondary card-header"
+    >
+      <small>
+        <b>
+          user
+        </b>
+      </small>
+      <div>
+        <small>
+          date
+        </small>
+      </div>
+    </div>
+    <div
+      class="card-body"
+    >
+      <p
+        class="card-text"
+      >
+        content
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

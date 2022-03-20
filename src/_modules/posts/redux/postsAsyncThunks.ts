@@ -7,7 +7,7 @@ export type PostQuery = number
 
 export const fetchPosts = createAsyncThunk(
   'posts/fetchPosts',
-  async (_, { rejectWithValue, getState, dispatch }) => {
+  async (_, { rejectWithValue }) => {
     try {
       return await ApolloClient.query({
         query: getQuery('FETCH_POSTS'),
@@ -22,7 +22,7 @@ export const fetchPosts = createAsyncThunk(
 
 export const fetchPostById = createAsyncThunk<Post, PostQuery, { rejectValue: Error }>(
   'posts/fetchPostById',
-  async (id , { rejectWithValue, getState, dispatch }) => {
+  async (id , { rejectWithValue }) => {
     try {
       const response = await ApolloClient.query({
         query: getQuery('FETCH_POST_BY_ID'),

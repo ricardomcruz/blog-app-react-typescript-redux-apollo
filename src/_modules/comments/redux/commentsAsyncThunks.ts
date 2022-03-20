@@ -1,36 +1,35 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import ApolloClient from '../../../_shared/infra/apollo/apolloClient';
 import { getQuery } from '../../../_shared/infra/queries/queries';
-import { RawComment } from '../models/Comment';
+import { Comment, CommentDTO } from '../models/Comment';
 
 type CommentQuery = {
-  postId: number,
-  comment: RawComment
+  postId: number;
+  comment: CommentDTO;
 };
 
 export const fetchComments = createAsyncThunk(
   'comments/fetchComments',
-  async (_, { rejectWithValue, getState, dispatch }) => {
+  async (_, { rejectWithValue }) => {
     try {
       return await ApolloClient.query({
         query: getQuery('GET_COMMENTS'),
       });
 
-     
     } catch (error) {
-      console.log(error)
+      console.error(error)
       return rejectWithValue(error);
     }
   }
 );
 
 export const fetchCommentsFromPost = createAsyncThunk<
-  RawComment[],
+  Comment[],
   number,
   { rejectValue: Error }
 >(
   'posts/fetchPostById',
-  async (id, { rejectWithValue, getState, dispatch }) => {
+  async (id, { rejectWithValue }) => {
     try {
       const response = await ApolloClient.query({
         query: getQuery('GET_COMMENTS_FROM_POST'),
@@ -44,12 +43,12 @@ export const fetchCommentsFromPost = createAsyncThunk<
 );
 
 export const createComment = createAsyncThunk<
-  Comment,
+  CommentDTO,
   CommentQuery,
   { rejectValue: Error }
 >(
   'comments/createComment',
-  async ({ postId, comment }, { rejectWithValue, getState, dispatch }) => {
+  async ({ postId, comment }, { rejectWithValue }) => {
     try {
       const response = await ApolloClient.query({
         query: getQuery('POST_COMMENT_FOR_POST'),
@@ -57,7 +56,7 @@ export const createComment = createAsyncThunk<
       });
       return response.data.comments;
     } catch (error) {
-      console.log(error)
+      console.error(error)
       return rejectWithValue(error as any);
     }
   }
